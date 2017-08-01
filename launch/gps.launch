@@ -1,0 +1,18 @@
+<launch>
+
+  <arg name="model" default="Valkyrie"/>
+  <arg name="child_frame_id" default="$(arg model)/base_link"/>
+  <arg name="publish_tf" default="true"/>
+  <arg name="gps_fps" default="20"/>
+  <arg name="output" default="screen"/>
+
+  <node pkg="gps_kf" type="gpsKf_node" name="$(arg model)"
+    output="$(arg output)">
+    <param name="child_frame_id" type="string" value="$(arg child_frame_id)"/>
+    <param name="publish_tf" type="bool" value="$(arg publish_tf)"/>
+    <param name="gps_fps" type="int" value="$(arg gps_fps)"/>
+    <param name="quadPoseTopic" type="string" value="$(arg model)/pose"/>
+    <param name="quadName" type="string" value="$(arg model)"/>
+  </node>
+
+</launch>
